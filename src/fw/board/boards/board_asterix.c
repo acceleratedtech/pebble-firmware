@@ -141,6 +141,13 @@ static const I2CBus I2C_IIC2_BUS = {
 };
 IRQ_MAP_NRFX(SPI0_SPIM0_SPIS0_TWI0_TWIM0_TWIS0, nrfx_twim_0_irq_handler);
 
+static const I2CSlavePort I2C_SLAVE_OPT3001 = {
+    .bus = &I2C_IIC2_BUS,
+    .address = 0x44 << 1,
+};
+
+I2CSlavePort *const I2C_OPT3001 = &I2C_SLAVE_OPT3001;
+
 /* PERIPHERAL ID 11 */
 
 /* sensor SPI bus */

@@ -222,7 +222,21 @@ if bld.is_snowy_compatible() or bld.is_silk() or bld.is_cutts() or bld.is_robert
         ],
     )
 
-if mcu_family in ('STM32F2', 'STM32F4', 'STM32F7'):
+if bld.capability('HAS_ALS_OPT3001'):
+    bld.objects(
+        name='driver_ambient_light',
+        source=[
+            'ambient_light_opt3001.c',
+        ],
+        use=[
+            'driver_i2c',
+            'driver_periph_config',
+            'fw_includes',
+            'root_includes',
+            'stm32_stdlib',
+        ],
+    )
+elif mcu_family in ('STM32F2', 'STM32F4', 'STM32F7'):
     bld.objects(
         name='driver_ambient_light',
         source=[
